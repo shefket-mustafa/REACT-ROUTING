@@ -3,9 +3,21 @@
 import { useState } from 'react'
 import { ChevronDownIcon } from '@heroicons/react/16/solid'
 import { Field, Label, Switch } from '@headlessui/react'
+import { useNavigate } from 'react-router'
 
 export default function Contact() {
   const [agreed, setAgreed] = useState(false)
+    const navigate = useNavigate()
+
+  const formAction = (formData) => {
+    console.log(Object.fromEntries(formData))
+
+    console.log('Sending contact info');
+
+    navigate('/')
+
+
+  }
 
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
@@ -25,7 +37,7 @@ export default function Contact() {
         <h2 className="text-4xl font-semibold tracking-tight text-balance text-gray-900 sm:text-5xl">Contact sales</h2>
         <p className="mt-2 text-lg/8 text-gray-600">Aute magna irure deserunt veniam aliqua magna enim voluptate.</p>
       </div>
-      <form action="#" method="POST" className="mx-auto mt-16 max-w-xl sm:mt-20">
+      <form action={formAction}  className="mx-auto mt-16 max-w-xl sm:mt-20">
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label htmlFor="first-name" className="block text-sm/6 font-semibold text-gray-900">

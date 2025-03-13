@@ -13,8 +13,8 @@ import { Link, useSearchParams } from "react-router"
 
 const sortOptions = [
   { name: 'All', href: '/catalog', current: true },
-  { name: 'Best Rating', href: '/catalog?rating=4', current: false },
-  { name: 'Popularity', href: '/catalog?ratingCount=100', current: false },
+  { name: 'Best Rating', href: '/catalog?top=true', current: false },
+  { name: 'Popularity', href: '/catalog?popular=true', current: false },
   { name: 'Price: Low to High', href: '/catalog?sortBy=price&dir=asc', current: false },
   { name: 'Price: High to Low', href: '/catalog?sortBy=price&dir=dsc', current: false },
 ]
@@ -42,9 +42,12 @@ export default function Catalog() {
     const filter = Object.fromEntries(searchParams);
 
     if(filter.sortBy){
-      setDisplayProducts([...products.sort((p1,p2) => filter.dir === 'asc' ? p1.price - p2.price : p2.price - p1.price)]);
+      setDisplayProducts([...products].sort((p1,p2) => filter.dir === 'asc' ? p1.price - p2.price : p2.price - p1.price));
+    } else if(filter.top){
+      setDisplayProducts(products.filter(p => p.rating?.rate >= 4)); 
+
     } else {
-      setDisplayProducts(products);
+      setDisplayProducts([...products]);
     }
   },[products, searchParams])
   return (
