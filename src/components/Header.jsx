@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Dialog, DialogPanel } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 
 const navigation = [
@@ -44,12 +44,14 @@ export default function Header() {
           // <a key={item.name} href={item.path} className="text-sm/6 font-semibold text-gray-900">
           //   {item.name}
           // </a>
-          <Link
+          <NavLink
           className="text-sm/6 font-semibold text-gray-900"
            key={item.name}
             to={item.path}
+            style={({ isActive }) => isActive ? {color: 'hsl(240, 100%, 50%)' } : {}}
             >
-              {item.name}</Link>
+              {item.name}
+              </NavLink>
         ))}
       </div>
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
