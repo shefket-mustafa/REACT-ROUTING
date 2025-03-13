@@ -1,7 +1,6 @@
 
-import { Link, Route, Routes } from 'react-router'
-import IndividualPricing from './IndividualPricing'
-import BusinessPricing from './BusinessPricing'
+import { Link, Outlet} from 'react-router'
+
 
 
 
@@ -28,14 +27,7 @@ export default function Pricing() {
       </Link>
       </div>
 
-
-      <Routes>
-
-        <Route path='individual' element = {<IndividualPricing />} />
-        <Route path='business' element = {<BusinessPricing />} />
-        
-      </Routes>
-      
+      <Outlet />
       
     </div>
   )
